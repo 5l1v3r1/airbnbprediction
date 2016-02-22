@@ -48,7 +48,9 @@ class Parser():
 
 					data.append(value_id)
 
-			self.data.append(data)	
+			self.data.append(data)
+
+		data_file.close()	
 
 	def get_data(self, attributes = []):
 		if len(attributes):
@@ -82,5 +84,41 @@ class Parser():
 
 		return class_instances
 
-	def get_format(self):
-		return self.format
+	def convert_id(self, ids, class_name):
+		values 			= []
+		class_index 	= 0
+
+		for index, attribute in enumerate(self.format):
+			if attribute['attribute_name'] == class_name:
+				class_index = index
+
+		for Id in ids:
+			values.append(self.format[class_index]["id_value"][Id])
+
+		return values
+
+	def output_csv(self, file_name, attributes, values):
+		data_file = open(file_name, 'w')
+
+		header_line = ''
+
+		for index, attribute in enumerate(attributes):
+			if index != 0:
+				header_line += ','
+			header_line += attribute
+		header_line += '\n'
+		
+		data_file.write(header_line)
+
+		for row in values:
+			line = ''
+			for index, value in enumerate(row):
+				if index != 0:
+					line += ','
+				line += str(value)
+			line += '\n'
+			data_file.write(line)
+
+		data_file.close()
+
+
