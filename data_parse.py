@@ -69,5 +69,18 @@ class Parser():
 
 		return self.data
 
+	def get_class(self, class_name):
+		class_instances	= []
+		class_index		= 0
+
+		for index, attribute in enumerate(self.format):
+			if attribute['attribute_name'] == class_name:
+				class_index = index
+
+		for data in self.data:
+			class_instances.append(data[class_index])
+
+		return class_instances
+
 	def get_format(self):
 		return self.format

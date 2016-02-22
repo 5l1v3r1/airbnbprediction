@@ -11,10 +11,8 @@ classification = []
 
 #Read in the training data
 parser_train = Parser('folds/train_users_fold.csv')
-
-for data in parser_train.get_data(["age", "gender", "country_destination"]):
-	data_instances.append(data[:len(data)-1])
-	classification.append(data[len(data)-1])
+data_instances = parser_train.get_data(["age", "gender", "first_device_type"])
+classification = parser_train.get_class("country_destination")
 
 #Train the classifier with the data instances and their classification
 g_clf = g_clf.fit(data_instances, classification)
@@ -27,9 +25,8 @@ parser_test = Parser('folds/test_users_fold.csv')
 test_data 	= []
 test_class	= []
 
-for data in parser_test.get_data(["age", "gender", "country_destination"]):
-	test_data.append(data[:len(data)-1])
-	test_class.append(data[len(data)-1])
+test_data	= parser_train.get_data(["age", "gender", "first_device_type"])
+test_class	= parser_train.get_class("country_destination")
 
 #Classifiy the test data
 print "GaussianNB Score:"
