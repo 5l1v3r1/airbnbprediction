@@ -11,7 +11,10 @@ classification = []
 
 #Read in the training data
 parser_train = Parser('folds/train_users_fold.csv')
-data_instances = parser_train.get_data(["age", "gender"])
+
+attribute_list = ["age", "gender", "first_affiliate_tracked"]
+
+data_instances = parser_train.get_data(attribute_list)
 classification = parser_train.get_class("country_destination")
 
 #Train the classifier with the data instances and their classification
@@ -25,7 +28,7 @@ parser_test = Parser('folds/test_users_fold.csv')
 test_data 	= []
 test_class	= []
 
-test_data	= parser_test.get_data(["age", "gender"])
+test_data	= parser_test.get_data(attribute_list)
 test_class	= parser_test.get_class("country_destination")
 test_id		= parser_test.get_class("id")
 
