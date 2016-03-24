@@ -13,7 +13,6 @@ class Parser():
 
 
 		#Initialize format for CVS file
-
 		data_file = open(self.file_name, "r")
 		attributes = data_file.readline().strip("\n").split(",")
 
@@ -33,7 +32,7 @@ class Parser():
 			
 			for index, value in enumerate(line):
 				try: #Check if the value is numeric
-					data.append(int(value))
+					data.append(int(float(value)))
 				except ValueError:	#if the value is not numeric eg. a string
 					#update attribute object 
 					self.format[index]["numeric"] = False
@@ -96,6 +95,16 @@ class Parser():
 			values.append(self.format[class_index]["id_value"][Id])
 
 		return values
+
+	def convert_value(self, value, class_name):
+		ids 			= []
+		class_index 	= 0
+
+		for index, attribute in enumerate(self.format):
+			if attribute['attribute_name'] == class_name:
+				class_index = index
+
+		return self.format[class_index]["value_id"].get(value)
 
 	def output_csv(self, file_name, attributes, values):
 		data_file = open(file_name, 'w')

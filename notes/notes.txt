@@ -1,0 +1,46 @@
+
+Points
+	
+	hidden variables
+		Wealth
+
+	bucketing the ages, you could try using a gaussian distribution for the age feature It would be easier to make constructive comments if I knew the size of your dataset and the number of classes (countries) that you are trying to predict. 
+		
+		represent gender with 01 for male and 10 for female
+
+		Remove bucket for svm, use gaussian/(poly least 2) kernal.
+
+
+	ideas for things to try?
+		XGBoost on kaggle
+		Multiple classifiers
+			Cluster into NDF and Booked
+			Select Country from Booked people
+
+[         
+    0.03260612  0.01805756  0.02939557  0.04635291  0.13327452
+  0.41989939  0.01446977]
+
+*gender, 0.02674304 
+*age, 0.14214946 
+*signup_method, 0.02424445
+*signup_flow, 0.01003
+*language, 0.01003098
+*affiliate_channel, 0.04209619
+*affiliate_provider, 0.037407
+*first_affiliate_tracked, 0.02327303
+*signup_app, 0.032606
+*first_device_type, 0.01805
+*first_browser, 0.02939557
+*action_count, 0.04635291
+*secs_elapsed, 0.13327452
+*age_bkt, 0.41989939
+pop_dest,
+
+[ 	'age_bkt', 'age', 'gender', 'first_device_type', 'signup_method', 'signup_flow',
+	'language', 'affiliate_channel', 'affiliate_provider', 'first_affiliate_tracked', 'signup_app', 'first_browser',
+	'action_count', 'secs_elapsed',
+]
+
+top features
+['action_count','first_browser', 'age', 'signup_app']
