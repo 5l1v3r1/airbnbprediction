@@ -1,13 +1,18 @@
 from clf import Classifier
 
 booked_attributes 	= [
-	'age', 'gender', 
-	'action_count', 'secs_elapsed', 'pop_dest'
+	'age',
+	'engage_level',
+	'unique_actions',
+	'engage_actions',
+	'action_count',
+	'seconds_count',
+	'device_count',
 ]
 
 booked_layer = Classifier(
-	"session/test_data_sessions_pop.csv",
-	"session/train_data_sessions_pop.csv",
+	"../data/test_sessions.csv",
+	"../data/train_sessions.csv",
 	"country_destination",
 	booked_attributes,
 	"rf"
