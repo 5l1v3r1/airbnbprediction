@@ -90,10 +90,7 @@ class Classifier():
 		
 		# setup parameters for xgboost
 		param = {}
-		param['eta'] = 0.5
-		param['max_depth'] = len(self.attributes)
 		param['silent'] = 1
-		param['nthread'] = 4
 		param['eval_metric'] = 'ndcg@5'
 
 		watchlist = [(xg_train,'train'), (xg_test, 'test')]
@@ -163,7 +160,7 @@ class Classifier():
 		test_class	= parser_test.get_class(self.predict_class)
 		test_id		= parser_test.get_class("id")
 		predictions = self.clf.predict(test_data)
-		print len(predictions)
+		#print self.clf.feature_importances_
 		self.write_csv(parser_test, predictions, filename)
 
 	def write_csv(self, parser_test, predictions, filename):
