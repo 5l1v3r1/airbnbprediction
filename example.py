@@ -1,7 +1,9 @@
 from clf import Classifier
 
 booked_attributes 	= [
-	'gender',
+	'male',
+	'female',
+	'other',	
 	'age',
 	'signup_method',
 	'signup_flow',
@@ -26,17 +28,31 @@ booked_attributes 	= [
 	'early_tod',
 	'mid_tod',
 	'evening_tod',
-	'late_tod'
+	'late_tod',
+	'pop_dest',
+	'weekday',
+	'PR_NDF',
+	'PR_GB',
+	'PR_DE',
+	'PR_FR',
+	'PR_other',
+	'PR_ES',
+	'PR_PT',
+	'PR_NL',
+	'PR_US',
+	'PR_AU',
+	'PR_IT',
+	'PR_CA'
 ]
 
 booked_layer = Classifier(
-	"../data/test_sessions_tod.csv",
-	"../data/train_sessions_tod.csv",
+	"../data/test_pr.csv",
+	"../data/train_pr.csv",
 	"country_destination",
 	booked_attributes,
-	"gbc"
+	"xgb"
 )
 
 #print booked_layer.cross_validate()
-booked_layer.output_csv()
-#booked_layer.xgb_predict()
+#booked_layer.output_csv()
+booked_layer.xgb_predict()

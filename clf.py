@@ -39,7 +39,7 @@ class Classifier():
 		elif classifier == 'gbc':
 			from sklearn.ensemble import GradientBoostingClassifier
 			print "Using GradientBoosting classifier"
-			return GradientBoostingClassifier()
+			return GradientBoostingClassifier(min_samples_leaf=20, n_estimators=400, subsample=0.5, learning_rate=0.1)
 		elif classifier == 'xgb':
 			import sys
 			sys.path.append('/usr/local/lib/python2.7/dist-packages/xgboost/python-package')
@@ -90,12 +90,14 @@ class Classifier():
 		
 		# setup parameters for xgboost
 		param = {}
-		param['silent'] = 1
-		param['eval_metric'] = 'ndcg@5'
+		param['objective'] = 'multi:softmax'
+		param['num_class'] = 12
+		param['gamma'] = 10
+		param['eval_metric'] = 'mlogloss'
 
 		watchlist = [(xg_train,'train'), (xg_test, 'test')]
 
-		num_round = 5
+		num_round = 10
 
 		bst = self.clf.train(param, xg_train, num_round, watchlist );
 
